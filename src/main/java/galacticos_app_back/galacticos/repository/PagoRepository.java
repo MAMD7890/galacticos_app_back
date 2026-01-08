@@ -10,4 +10,5 @@ import java.util.List;
 public interface PagoRepository extends JpaRepository<Pago, Integer> {
     List<Pago> findByEstudianteIdEstudiante(Integer idEstudiante);
     List<Pago> findByEstadoPago(Pago.EstadoPago estado);
+    List<Pago> findByFechaPagoBetween(java.time.LocalDate desde, java.time.LocalDate hasta);
 }

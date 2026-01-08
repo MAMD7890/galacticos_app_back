@@ -1,11 +1,14 @@
 package galacticos_app_back.galacticos.controller;
 
+import galacticos_app_back.galacticos.dto.GastoResumenReporteDto;
 import galacticos_app_back.galacticos.entity.Gasto;
 import galacticos_app_back.galacticos.service.GastoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +47,16 @@ public class GastoController {
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
         gastoService.eliminar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/reporte")
+    public ResponseEntity<GastoResumenReporteDto> generarReporte(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate desde,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hasta,
+            @RequestParam(required = false) Integer sedeId,
+            @RequestParam(required = false) String concepto,
+            @RequestParam(required = false) String descripcion) {
+        GastoResumenReporteDto res = gastoService.generarReporte(desde, hasta, sedeId, concepto, descripcion);
+        return ResponseEntity.ok(res);
     }
 }

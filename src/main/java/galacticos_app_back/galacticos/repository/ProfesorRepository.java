@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer> {
     List<Profesor> findByEstado(Boolean estado);
+    List<Profesor> findByNombreContainingIgnoreCaseAndEstado(String nombre, Boolean estado);
 }

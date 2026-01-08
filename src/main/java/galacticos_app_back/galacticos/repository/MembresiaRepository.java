@@ -11,4 +11,5 @@ public interface MembresiaRepository extends JpaRepository<Membresia, Integer> {
     List<Membresia> findByEstudianteIdEstudiante(Integer idEstudiante);
     List<Membresia> findByEquipoIdEquipo(Integer idEquipo);
     List<Membresia> findByEstado(Membresia.EstadoMembresia estado);
+    List<Membresia> findByFechaInicioBetween(java.time.LocalDate desde, java.time.LocalDate hasta);
 }

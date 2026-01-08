@@ -39,6 +39,6 @@ public class Membresia {
     private EstadoMembresia estado;
     
     public enum EstadoMembresia {
-        VIGENTE, VENCIDA
+        AL_DIA, EN_MORA, SUSPENDIDO, VIGENTE, VENCIDA
     }
 }
